@@ -70,8 +70,8 @@ variables:
   notification_title: !input notification_title
   notification_message: !input notification_message
   delay: !input delay
-  snapshot_create_file_path: "/config/www/tmp/snapshot_{{ states[camera].object_id }}.jpg"
-  snapshot_access_file_path: "{{ snapshot_create_file_path | replace('/config/www','/local') }}"
+  snapshot_create_file_path: /homeassistant/www/tmp/snapshot_{{ states[camera].object_id }}.jpg 
+  snapshot_access_file_path: '{{ snapshot_create_file_path | replace(''/homeassistant/www'',''/local'') }}'
 
 action:
   - delay: "{{ delay }}"
