@@ -1,5 +1,8 @@
 blueprint:
-  name: Send a camera snapshot when Doorbell Person is detected
+  name: Send a camera snapshot when front doorbell detects person
+  description: >
+    This automation blueprint creates a camera snapshot if a person is detected on the front porch
+    and sends a notification to your phone with the picture.
   domain: automation
   input:
     motion_sensor:
@@ -8,7 +11,7 @@ blueprint:
       selector:
           entity:
             domain: binary_sensor
-            device_class: motion_front_doorbell
+            device_class: motion
 
     camera:
       name: Camera
@@ -16,7 +19,6 @@ blueprint:
       selector:
         entity:
           domain: camera
-          device_class: front_doorbell
 
     notify_device:
       name: Device to notify
@@ -56,7 +58,7 @@ blueprint:
 trigger:
   platform: state
   entity_id: !input motion_sensor
-  attribute: event_object
+  from: "off"
   to: "person"
 
 variables:
